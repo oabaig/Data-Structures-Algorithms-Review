@@ -15,6 +15,7 @@ public:
 	void insert(T item);
 	void print();
 	void removeAt(int index);
+	T getAt(int index);
 };
 
 template <typename T>
@@ -46,8 +47,13 @@ void Array<T>::print() {
 
 template <typename T>
 void Array<T>::removeAt(int index) {
-	for (int i = index; i < _size; i++) {
+	for (int i = index; i < _size - 1; i++) {
 		_array[i] = _array[i + 1];
 	}
 	_size--;
+}
+
+template <typename T>
+T Array<T>::getAt(int index) {
+	return _array[index];
 }
