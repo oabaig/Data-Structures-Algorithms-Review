@@ -121,6 +121,7 @@ void Array<T>::resize() {
 
 template <typename T>
 T* Array<T>::intersect(Array arr) {
+	/*
 	if (arr.size() > _size) {
 		int greaterSize = arr.size();
 		int lesserSize = _size;
@@ -160,7 +161,23 @@ T* Array<T>::intersect(Array arr) {
 		tempArray.print();
 
 		return tempArray.toArray();
+	}*/
+
+	int arrSize = (_size > arr.size()) ? arr.size() : _size;
+
+	Array<T> tempArray(arrSize);
+
+	for (int i = 0; i < _size; i++) {
+		for (int j = 0; j < arr.size(); j++) {
+			if (_array[i] == arr[j]) {
+				tempArray.insert(_array[i]);
+			}
+		}
 	}
+
+	tempArray.print();
+
+	return tempArray.toArray();
 }
 
 template <typename T>
