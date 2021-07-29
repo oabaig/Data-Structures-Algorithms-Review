@@ -27,6 +27,7 @@ public:
 	void removeAt(int index);
 	void resize();
 	int  indexOf(T item);
+	T*   toArray();
 	T*   intersect(Array arr);
 	T    getAt(int index);
 
@@ -120,7 +121,51 @@ void Array<T>::resize() {
 
 template <typename T>
 T* Array<T>::intersect(Array arr) {
-	int arrSize = (arr.size < _size) ? arr.size : _size;
+	if (arr.size() > _size) {
+		int greaterSize = arr.size();
+		int lesserSize = _size;
 
+		Array<T> tempArray(lesserSize);
 
+		int count = 0;
+
+		for (int i = 0; i < greaterSize; i++) {
+			for (int j = 0; j < lesserSize; j++) {
+				if (arr[i] == _array[j]) {
+					tempArray[count] = arr[i];
+				}
+			}
+		}
+
+		// ---test
+		tempArray.print();
+
+		return tempArray.toArray();
+	}
+	else {
+		int greaterSize = _size;
+		int lesserSize = arr.size();
+
+		Array<T> tempArray(lesserSize);
+
+		int count = 0;
+
+		for (int i = 0; i < greaterSize; i++) {
+			for (int j = 0; j < lesserSize; j++) {
+				if (_array[i] == arr[j]) {
+					tempArray[count] = _array[i];
+				}
+			}
+		}
+
+		// ---test
+		tempArray.print();
+
+		return tempArray.toArray();
+	}
+}
+
+template <typename T>
+T* Array<T>::toArray() {
+	return _array;
 }
