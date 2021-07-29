@@ -47,6 +47,7 @@ void Array<T>::print() {
 template <typename T>
 void Array<T>::removeAt(int index) {
 	for (int i = index; i < _size; i++) {
-		_array[i] = array[i + 1];
+		_array[i] = _array[i + 1];
 	}
+	_size--;
 }

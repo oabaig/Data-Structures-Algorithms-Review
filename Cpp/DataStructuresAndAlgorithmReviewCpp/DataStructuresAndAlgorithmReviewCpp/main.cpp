@@ -7,7 +7,7 @@
 
 int main()
 {
-    Array<int> newArray(3);
+    Array<int> newArray(5);
 
     newArray.insert(12423);
     newArray.insert(45356);
@@ -16,7 +16,7 @@ int main()
     newArray.insert(23334);
     newArray.print();
 
-    newArray.removeAt(4);
+    newArray.removeAt(3);
     newArray.print();
 
     return 0;
