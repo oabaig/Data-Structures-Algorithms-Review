@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <exception>
 
 template <typename T>
 class Array
@@ -13,22 +12,24 @@ private:
 public:
 	// constructors
 	Array(int length);
+	Array(const Array& arr);
 	
 	// getters
 	int size()    const { return _size; }
 	int maxSize() const { return _maxSize; }
 
 	// operator overloads
-	T& operator[](int index);
+	T& operator[](int index);	
 
 	// methods
 	void insert(T item);
 	void print();
 	void removeAt(int index);
-	T getAt(int index);
-	int indexOf(T item);
-	T* intersect(Array arr);
 	void resize();
+	int  indexOf(T item);
+	T*   intersect(Array arr);
+	T    getAt(int index);
+
 };
 
 // constructors
@@ -37,6 +38,18 @@ Array<T>::Array(int length) {
 	_array = new T[length];
 	_size = 0;
 	_maxSize = length;
+}
+
+template <typename T>
+Array<T>::Array(const Array& arr) {
+	_size = arr._size;
+	_maxSize = arr._maxSize;
+	
+	_array = new T[_size];
+
+	for (int i = 0; i < _size; i++) {
+		_array[i] = arr._array[i];
+	}
 }
 
 // operator overloads
