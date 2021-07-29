@@ -11,10 +11,17 @@ private:
 	int _maxSize;
 
 public:
+	// constructors
+	Array(int length);
+	
+	// getters
 	int size()    const { return _size; }
 	int maxSize() const { return _maxSize; }
 
-	Array(int length);
+	// operator overloads
+	T& operator[](int index);
+
+	// methods
 	void insert(T item);
 	void print();
 	void removeAt(int index);
@@ -24,6 +31,7 @@ public:
 	void resize();
 };
 
+// constructors
 template <typename T>
 Array<T>::Array(int length) {
 	_array = new T[length];
@@ -31,6 +39,13 @@ Array<T>::Array(int length) {
 	_maxSize = length;
 }
 
+// operator overloads
+template <typename T>
+T& Array<T>::operator[](int index) {
+	return _array[index];
+}
+
+// methods
 template <typename T>
 void Array<T>::insert(T item) {
 	if (_size == _maxSize) {
