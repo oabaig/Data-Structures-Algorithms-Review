@@ -5,9 +5,9 @@ template <typename T>
 class Array
 {
 private:
-	T*  _array;
 	int _size;
 	int _maxSize;
+	T* _array;
 
 public:
 	// constructors
@@ -29,6 +29,7 @@ public:
 	int  indexOf(T item);
 	T*   toArray();
 	T*   intersect(Array arr);
+	T*   reverse();
 	T    getAt(int index);
 
 };
@@ -121,53 +122,12 @@ void Array<T>::resize() {
 
 template <typename T>
 T* Array<T>::intersect(Array arr) {
-	/*
-	if (arr.size() > _size) {
-		int greaterSize = arr.size();
-		int lesserSize = _size;
-
-		Array<T> tempArray(lesserSize);
-
-		for (int i = 0; i < greaterSize; i++) {
-			for (int j = 0; j < lesserSize; j++) {
-				if (arr[i] == _array[j]) {
-					tempArray.insert(arr[i]);
-				}
-			}
-		}
-
-		// ---test
-		tempArray.print();
-
-		return tempArray.toArray();
-	}
-	else {
-		int greaterSize = _size;
-		int lesserSize = arr.size();
-
-		Array<T> tempArray(lesserSize);
-
-		int count = 0;
-
-		for (int i = 0; i < greaterSize; i++) {
-			for (int j = 0; j < lesserSize; j++) {
-				if (_array[i] == arr[j]) {
-					tempArray.insert(_array[i]);
-				}
-			}
-		}
-
-		// ---test
-		tempArray.print();
-
-		return tempArray.toArray();
-	}*/
-
 	int arrSize = (_size > arr.size()) ? arr.size() : _size;
 
 	Array<T> tempArray(arrSize);
 
 	for (int i = 0; i < _size; i++) {
+		std::cout << _array[i] << " i" << std::endl;
 		for (int j = 0; j < arr.size(); j++) {
 			if (_array[i] == arr[j]) {
 				tempArray.insert(_array[i]);
@@ -175,12 +135,21 @@ T* Array<T>::intersect(Array arr) {
 		}
 	}
 
-	tempArray.print();
-
 	return tempArray.toArray();
 }
 
 template <typename T>
 T* Array<T>::toArray() {
 	return _array;
+}
+
+template <typename T>
+T* Array<T>::reverse() {
+	Array<T> tempArray(_size);
+
+	for (int i = _size - 1; i >= 0; i--) {
+		tempArray.insert(_array[i]);
+	}
+
+	return tempArray.toArray();
 }
