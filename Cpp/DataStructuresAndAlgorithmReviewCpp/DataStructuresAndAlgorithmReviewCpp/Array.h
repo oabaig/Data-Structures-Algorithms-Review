@@ -11,12 +11,17 @@ private:
 	int _maxSize;
 
 public:
+	int size()    const { return _size; }
+	int maxSize() const { return _maxSize; }
+
 	Array(int length);
 	void insert(T item);
 	void print();
 	void removeAt(int index);
 	T getAt(int index);
 	int indexOf(T item);
+	T* intersect(Array arr);
+	void resize();
 };
 
 template <typename T>
@@ -68,4 +73,26 @@ int Array<T>::indexOf(T item) {
 	}
 	
 	return -1;
+}
+
+template<typename T>
+void Array<T>::resize() {
+	T* temp = new T[_size];
+	for (int i = 0; i < _size; i++) {
+		temp[i] = _array[i];
+	}
+
+	delete _array;
+	_array = new T[_size];
+	for (int i = 0; i < _size; i++) {
+		_array[i] = temp[i];
+	}
+	_maxSize = _size;
+}
+
+template <typename T>
+T* Array<T>::intersect(Array arr) {
+	int arrSize = (arr.size < _size) ? arr.size : _size;
+
+
 }
