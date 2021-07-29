@@ -19,17 +19,18 @@ public:
 	int maxSize() const { return _maxSize; }
 
 	// operator overloads
-	T& operator[](int index);	
+	T& operator[](int index);
 
 	// methods
 	void insert(T item);
 	void print();
 	void removeAt(int index);
 	void resize();
+	void insertAt(T item, int index);
+	void reverse();
 	int  indexOf(T item);
 	T*   toArray();
 	T*   intersect(Array arr);
-	T*   reverse();
 	T    getAt(int index);
 
 };
@@ -144,12 +145,41 @@ T* Array<T>::toArray() {
 }
 
 template <typename T>
-T* Array<T>::reverse() {
+void Array<T>::reverse() {
+
 	Array<T> tempArray(_size);
 
 	for (int i = _size - 1; i >= 0; i--) {
 		tempArray.insert(_array[i]);
 	}
 
-	return tempArray.toArray();
+	delete[] _array;
+
+	
+	_array = new T[_maxSize];
+	for (int i = 0; i < _size; i++) {
+		_array[i] = tempArray[i];
+	}
+
+	// implement delete overload for Array
+}
+
+template <typename T>
+void Array<T>::insertAt(T item, int index) {
+	Array<T> tempArray(++_size);
+	_maxSize++;
+
+	for (int i = 0; i < _size; i++) {
+		if (i == index) {
+			tempArray.insert(item);
+		}
+
+		tempArray.insert(_array[i]);
+	}
+
+	delete[] _array;
+	_array = new T[_maxSize];
+	for (int i = 0; i < _size; i++) {
+		_array[i] = tempArray[i];
+	}
 }
