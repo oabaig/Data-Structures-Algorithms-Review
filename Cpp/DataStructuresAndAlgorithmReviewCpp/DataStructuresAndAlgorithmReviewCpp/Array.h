@@ -127,12 +127,10 @@ T* Array<T>::intersect(Array arr) {
 
 		Array<T> tempArray(lesserSize);
 
-		int count = 0;
-
 		for (int i = 0; i < greaterSize; i++) {
 			for (int j = 0; j < lesserSize; j++) {
 				if (arr[i] == _array[j]) {
-					tempArray[count] = arr[i];
+					tempArray.insert(arr[i]);
 				}
 			}
 		}
@@ -153,7 +151,7 @@ T* Array<T>::intersect(Array arr) {
 		for (int i = 0; i < greaterSize; i++) {
 			for (int j = 0; j < lesserSize; j++) {
 				if (_array[i] == arr[j]) {
-					tempArray[count] = _array[i];
+					tempArray.insert(_array[i]);
 				}
 			}
 		}
