@@ -26,6 +26,8 @@ public:
 	// methods
 	void addLast(T item);
 	void addFirst(T item);
+	void deleteLast();
+	void deleteFirst();
 	void print();
 
 };
@@ -77,6 +79,29 @@ void LinkedList<T>::addFirst(T item) {
 	newNode->next = currNode;
 
 	Head = newNode;
+}
+
+template <typename T>
+void LinkedList<T>::deleteLast() {
+	Node<T>* currNode = new Node<T>();
+
+	currNode = Head;
+
+	while (currNode->next != NULL) {
+
+		if (currNode->next == Tail) {
+			break;
+		}
+
+		currNode = currNode->next;
+	}
+
+	currNode->next = NULL;
+}
+
+template <typename T>
+void LinkedList<T>::deleteFirst() {
+	Head = Head->next;
 }
 
 template <typename T>
