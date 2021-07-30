@@ -29,6 +29,8 @@ public:
 	void deleteLast();
 	void deleteFirst();
 	void print();
+	bool contains(T item);
+	int  indexOf(T item);
 
 };
 
@@ -113,4 +115,42 @@ void LinkedList<T>::print() {
 		std::cout << currNode->item << std::endl;
 		currNode = currNode->next;
 	}
+}
+
+template <typename T>
+bool LinkedList<T>::contains(T item) {
+	Node<T>* currNode = new Node<T>();
+
+	currNode = Head;
+
+	while (currNode != NULL) {
+		if (currNode->item == item) {
+			return true;
+		}
+
+		currNode = currNode->next;
+	}
+
+	return false;
+}
+
+template <typename T>
+int LinkedList<T>::indexOf(T item) {
+	Node<T>* currNode = new Node<T>();
+
+	currNode = Head;
+
+	int index = 0;
+
+	while (currNode != NULL) {
+		if (currNode->item == item) {
+			return index;
+		}
+
+		currNode = currNode->next;
+
+		index++;
+	}
+
+	return -1;
 }
