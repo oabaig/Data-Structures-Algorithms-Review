@@ -17,8 +17,15 @@ private:
 	int _length;
 
 public:
+	// getters and setters
+	int getLength() const { return _length; }
+
+	// constructors
 	LinkedList();
+
+	// methods
 	void addLast(T item);
+	void addFirst(T item);
 	void print();
 
 };
@@ -57,6 +64,19 @@ void LinkedList<T>::addLast(T item) {
 	}
 
 	_length++;
+}
+
+template <typename T>
+void LinkedList<T>::addFirst(T item) {
+	Node<T>* newNode  = new Node<T>();
+	Node<T>* currNode = new Node<T>();
+
+	currNode = Head;
+
+	newNode->item = item;
+	newNode->next = currNode;
+
+	Head = newNode;
 }
 
 template <typename T>
