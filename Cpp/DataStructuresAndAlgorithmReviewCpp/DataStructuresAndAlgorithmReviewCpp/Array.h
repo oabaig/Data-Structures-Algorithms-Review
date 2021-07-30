@@ -13,6 +13,9 @@ public:
 	// constructors
 	Array(int length);
 	Array(const Array& arr);
+
+	// destructor
+	~Array();
 	
 	// getters
 	int size()    const { return _size; }
@@ -23,10 +26,10 @@ public:
 
 	// methods
 	void insert(T item);
+	void insertAt(T item, int index);
 	void print();
 	void removeAt(int index);
 	void resize();
-	void insertAt(T item, int index);
 	void reverse();
 	int  indexOf(T item);
 	T*   toArray();
@@ -53,6 +56,12 @@ Array<T>::Array(const Array& arr) {
 	for (int i = 0; i < _size; i++) {
 		_array[i] = arr._array[i];
 	}
+}
+
+// destructors
+template <typename T>
+Array<T>::~Array() {
+	delete[] _array;
 }
 
 // operator overloads
@@ -155,13 +164,10 @@ void Array<T>::reverse() {
 
 	delete[] _array;
 
-	
 	_array = new T[_maxSize];
 	for (int i = 0; i < _size; i++) {
 		_array[i] = tempArray[i];
 	}
-
-	// implement delete overload for Array
 }
 
 template <typename T>
