@@ -2,15 +2,15 @@
 #include <iostream>
 
 template <typename T>
-struct Node {
-public:
-	T     item;
-	Node* next;
-};
-
-template <typename T>
 class LinkedList {
 private:
+	template <typename T>
+	struct Node {
+	public:
+		T     item;
+		Node* next;
+	};
+
 	Node<T>* Head;
 	Node<T>* Tail;
 
@@ -31,6 +31,7 @@ public:
 	void print();
 	bool contains(T item);
 	int  indexOf(T item);
+	T*   toArray();
 
 };
 
@@ -81,6 +82,12 @@ void LinkedList<T>::addFirst(T item) {
 	newNode->next = currNode;
 
 	Head = newNode;
+
+	if (_length == 0) {
+		Tail = newNode;
+	}
+
+	_length++;
 }
 
 template <typename T>
@@ -99,11 +106,15 @@ void LinkedList<T>::deleteLast() {
 	}
 
 	currNode->next = NULL;
+
+	_length--;
 }
 
 template <typename T>
 void LinkedList<T>::deleteFirst() {
 	Head = Head->next;
+
+	_length--;
 }
 
 template <typename T>
@@ -153,4 +164,21 @@ int LinkedList<T>::indexOf(T item) {
 	}
 
 	return -1;
+}
+
+template <typename T>
+T* LinkedList<T>::toArray() {
+	T temp[_length];
+
+	Node<T>* currNode = new Node<T>();
+
+	int count = 0;
+
+	while (currNode != NULL) {
+		temp[count++] = currNode->item;
+
+		currNode = currNode->next;
+	}
+
+	return temp;
 }

@@ -22,7 +22,7 @@ public:
 	int maxSize() const { return _maxSize; }
 
 	// operator overloads
-	T& operator[](int index);
+	T operator[](int index);
 
 	// methods
 	void insert(T item);
@@ -32,7 +32,7 @@ public:
 	void resize();
 	void reverse();
 	int  indexOf(T item);
-	T*   toArray();
+	T*   getArray();
 	T*   intersect(Array arr);
 	T    getAt(int index);
 
@@ -64,9 +64,8 @@ Array<T>::~Array() {
 	delete[] _array;
 }
 
-// operator overloads
 template <typename T>
-T& Array<T>::operator[](int index) {
+T Array<T>::operator[](int index) {
 	return _array[index];
 }
 
@@ -145,11 +144,11 @@ T* Array<T>::intersect(Array arr) {
 		}
 	}
 
-	return tempArray.toArray();
+	return tempArray.getArray();
 }
 
 template <typename T>
-T* Array<T>::toArray() {
+T* Array<T>::getArray() {
 	return _array;
 }
 
