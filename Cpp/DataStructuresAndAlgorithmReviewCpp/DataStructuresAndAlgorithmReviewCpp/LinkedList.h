@@ -29,6 +29,7 @@ public:
 	void deleteLast();
 	void deleteFirst();
 	void print();
+	void reverse();
 	bool contains(T item);
 	int  indexOf(T item);
 	T*   toArray();
@@ -39,33 +40,23 @@ template <typename T>
 LinkedList<T>::LinkedList() {
 	_length = 0;
 
-	Head = new Node<T>();
-	Tail = new Node<T>();
+	Head = NULL;
+	Tail = NULL;
 }
 
 template <typename T>
 void LinkedList<T>::addLast(T item) {
-	Node<T>* newNode;
-	newNode = new Node<T>();
+	Node<T>* newNode = new Node<T>();
 	newNode->item = item;
 	newNode->next = NULL;
 
-	Node<T>* currNode = new Node<T>();
-
-	currNode = Head;
-
-	while (currNode->next != NULL) {
-		currNode = currNode->next;
-	}
-
-	currNode->next = newNode;
-
-	if (_length == 0) {
+	if (Head == NULL) {
 		Head = newNode;
 		Tail = newNode;
 	}
-	else{
-		Tail = newNode;
+	else {
+		Tail->next = newNode;
+		Tail = Tail->next;
 	}
 
 	_length++;
@@ -122,10 +113,17 @@ void LinkedList<T>::print() {
 	Node<T>* currNode = new Node<T>();
 	currNode = Head;
 
+	int count = 0;
+
 	while (currNode != NULL) {
-		std::cout << currNode->item << std::endl;
+		std::cout << currNode->item << " ";
+		if (count % 5 == 0 && count != 0) {
+			std::cout << std::endl;
+		}
 		currNode = currNode->next;
+		count++;
 	}
+	std::cout << std::endl;
 }
 
 template <typename T>
@@ -168,7 +166,7 @@ int LinkedList<T>::indexOf(T item) {
 
 template <typename T>
 T* LinkedList<T>::toArray() {
-	T temp[_length];
+	T* temp = new T[_length];
 
 	Node<T>* currNode = new Node<T>();
 
@@ -181,4 +179,28 @@ T* LinkedList<T>::toArray() {
 	}
 
 	return temp;
+}
+
+template <typename T>
+void LinkedList<T>::reverse() {
+	Node<T>* currNode = new Node<T>();
+	Node<T>* prevNode = new Node<T>();
+	Node<T>* nextNode = new Node<T>();
+
+	currNode = Head;
+
+	while (currNode != NULL) {
+
+		nextNode = currNode->next;
+
+		currNode->next = prevNode;
+
+		prevNode = currNode;
+
+		currNode = nextNode;
+	}
+	Tail = Head;
+
+	//std::cout << Tail->item;
+	Head = prevNode;
 }
