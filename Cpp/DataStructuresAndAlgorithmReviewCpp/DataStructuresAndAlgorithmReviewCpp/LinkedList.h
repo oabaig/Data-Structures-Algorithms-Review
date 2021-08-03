@@ -74,7 +74,7 @@ void LinkedList<T>::addFirst(T item) {
 
 	Head = newNode;
 
-	if (_length == 0) {
+	if (Tail == NULL) {
 		Tail = newNode;
 	}
 
@@ -184,8 +184,8 @@ T* LinkedList<T>::toArray() {
 template <typename T>
 void LinkedList<T>::reverse() {
 	Node<T>* currNode = new Node<T>();
-	Node<T>* prevNode = new Node<T>();
-	Node<T>* nextNode = new Node<T>();
+	Node<T>* prevNode = NULL;
+	Node<T>* nextNode = NULL;
 
 	currNode = Head;
 
