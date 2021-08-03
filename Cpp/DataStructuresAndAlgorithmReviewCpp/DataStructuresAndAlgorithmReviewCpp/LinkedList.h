@@ -33,6 +33,7 @@ public:
 	bool contains(T item);
 	int  indexOf(T item);
 	T*   toArray();
+	T    GetKthFromTheEnd(int k);
 
 };
 
@@ -183,7 +184,7 @@ T* LinkedList<T>::toArray() {
 
 template <typename T>
 void LinkedList<T>::reverse() {
-	Node<T>* currNode = new Node<T>();
+	Node<T>* currNode = NULL;
 	Node<T>* prevNode = NULL;
 	Node<T>* nextNode = NULL;
 
@@ -200,7 +201,10 @@ void LinkedList<T>::reverse() {
 		currNode = nextNode;
 	}
 	Tail = Head;
-
-	//std::cout << Tail->item;
 	Head = prevNode;
+}
+
+template<typename T>
+T LinkedList<T>::GetKthFromTheEnd(int k) {
+
 }
