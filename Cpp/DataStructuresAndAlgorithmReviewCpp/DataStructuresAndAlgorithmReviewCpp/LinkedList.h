@@ -23,6 +23,9 @@ public:
 	// constructors
 	LinkedList();
 
+	// destructors
+	~LinkedList();
+
 	// methods
 	void addLast(T item);
 	void addFirst(T item);
@@ -37,6 +40,8 @@ public:
 
 };
 
+// constructors
+
 template <typename T>
 LinkedList<T>::LinkedList() {
 	_length = 0;
@@ -44,6 +49,26 @@ LinkedList<T>::LinkedList() {
 	Head = NULL;
 	Tail = NULL;
 }
+
+// destructors
+
+template <typename T>
+LinkedList<T>::~LinkedList() {
+	Node<T>* currNode = Head;
+
+	while (currNode != NULL) {
+		Node<T>* nextNode = currNode->next;
+
+		delete currNode;
+
+		currNode = nextNode;
+	}
+
+	Head = NULL;
+	Tail = NULL;
+}
+
+// methods
 
 template <typename T>
 void LinkedList<T>::addLast(T item) {
@@ -66,9 +91,7 @@ void LinkedList<T>::addLast(T item) {
 template <typename T>
 void LinkedList<T>::addFirst(T item) {
 	Node<T>* newNode  = new Node<T>();
-	Node<T>* currNode = new Node<T>();
-
-	currNode = Head;
+	Node<T>* currNode = Head;
 
 	newNode->item = item;
 	newNode->next = currNode;
@@ -84,9 +107,7 @@ void LinkedList<T>::addFirst(T item) {
 
 template <typename T>
 void LinkedList<T>::deleteLast() {
-	Node<T>* currNode = new Node<T>();
-
-	currNode = Head;
+	Node<T>* currNode = Head;
 
 	while (currNode->next != NULL) {
 
@@ -111,8 +132,7 @@ void LinkedList<T>::deleteFirst() {
 
 template <typename T>
 void LinkedList<T>::print() {
-	Node<T>* currNode = new Node<T>();
-	currNode = Head;
+	Node<T>* currNode = Head;
 
 	int count = 0;
 
@@ -129,9 +149,7 @@ void LinkedList<T>::print() {
 
 template <typename T>
 bool LinkedList<T>::contains(T item) {
-	Node<T>* currNode = new Node<T>();
-
-	currNode = Head;
+	Node<T>* currNode = Head;
 
 	while (currNode != NULL) {
 		if (currNode->item == item) {
@@ -146,9 +164,7 @@ bool LinkedList<T>::contains(T item) {
 
 template <typename T>
 int LinkedList<T>::indexOf(T item) {
-	Node<T>* currNode = new Node<T>();
-
-	currNode = Head;
+	Node<T>* currNode = Head;
 
 	int index = 0;
 
@@ -169,7 +185,7 @@ template <typename T>
 T* LinkedList<T>::toArray() {
 	T* temp = new T[_length];
 
-	Node<T>* currNode = new Node<T>();
+	Node<T>* currNode = Head;
 
 	int count = 0;
 
