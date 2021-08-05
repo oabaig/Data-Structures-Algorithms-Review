@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <exception>
 
 template <typename T>
 class LinkedList {
@@ -222,5 +223,22 @@ void LinkedList<T>::reverse() {
 
 template<typename T>
 T LinkedList<T>::GetKthFromTheEnd(int k) {
+	Node<T>* leadingNode = Head;
+	Node<T>* trailingNode = Head;
 
+	int count = 0;
+	while (count < k) {
+		if (leadingNode->next == NULL) {
+			return NULL;
+		}
+		leadingNode = leadingNode->next;
+		count++;
+	}
+
+	while (leadingNode->next != NULL) {
+		leadingNode = leadingNode->next;
+		trailingNode = trailingNode->next;
+	}
+
+	return trailingNode->item;	
 }
