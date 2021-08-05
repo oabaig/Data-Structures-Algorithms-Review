@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <exception>
 
 template <typename T>
 class LinkedList {
@@ -33,6 +32,7 @@ public:
 	void deleteLast();
 	void deleteFirst();
 	void print();
+	void printMiddle();
 	void reverse();
 	bool contains(T item);
 	int  indexOf(T item);
@@ -231,6 +231,7 @@ T LinkedList<T>::GetKthFromTheEnd(int k) {
 		if (leadingNode->next == NULL) {
 			return NULL;
 		}
+		
 		leadingNode = leadingNode->next;
 		count++;
 	}
@@ -241,4 +242,30 @@ T LinkedList<T>::GetKthFromTheEnd(int k) {
 	}
 
 	return trailingNode->item;	
+}
+
+template <typename T>
+void LinkedList<T>::printMiddle() {
+	Node<T>* leadingNode  = Head;
+	Node<T>* trailingNode = Head;
+
+	int count = 1;
+	while (leadingNode->next != NULL) {
+		leadingNode = leadingNode->next;
+
+		count++;
+	}
+
+	int count2 = 1;
+	while (count2 < count / 2) {
+		trailingNode = trailingNode->next;
+		count2++;
+	}
+
+	if (count % 2 == 0) {
+		std::cout << trailingNode->item << " " << trailingNode->next->item << std::endl;
+	}
+	else {
+		std::cout << trailingNode->item << std::endl;
+	}
 }
