@@ -286,6 +286,10 @@ bool LinkedList<T>::hasLoop() {
 	Node<T>* slowPointer = Head;
 	Node<T>* fastPointer = Head;
 
+	// test
+	Node<T>* currPointer = Tail;
+	currPointer->next = Head->next->next;
+
 	while (fastPointer->next != NULL || slowPointer->next != NULL) {
 		fastPointer = fastPointer->next;
 		if (fastPointer == NULL) {
