@@ -12,6 +12,8 @@ public:
 	void print();
 	void push(T item);
 	T    pop();
+	T    top();
+
 };
 
 // methods
@@ -33,4 +35,9 @@ T Stack<T>::pop() {
 template <typename T>
 void Stack<T>::print() {
 	_stack.print();
+}
+
+template <typename T>
+T Stack<T>::top() {
+	return _top->item;
 }
