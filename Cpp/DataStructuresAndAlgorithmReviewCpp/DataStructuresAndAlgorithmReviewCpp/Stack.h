@@ -8,6 +8,9 @@ private:
 	Node<T>* _top;
 
 public:
+	// constructors
+	Stack();
+
 	// methods
 	void print();
 	void push(T item);
@@ -15,6 +18,12 @@ public:
 	T    top();
 
 };
+
+// constructors
+template<typename T>
+Stack<T>::Stack() {
+	_top = new Node<T>;
+}
 
 // methods
 template <typename T>
