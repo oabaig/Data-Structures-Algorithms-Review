@@ -2,14 +2,16 @@
 #include <iostream>
 
 template <typename T>
+struct Node {
+public:
+	T     item;
+	Node* next;
+};
+
+template <typename T>
 class LinkedList {
 private:
-	template <typename T>
-	struct Node {
-	public:
-		T     item;
-		Node* next;
-	};
+	
 
 	Node<T>* Head;
 	Node<T>* Tail;
