@@ -5,8 +5,8 @@ template <typename T>
 class Stack {
 private:
 	LinkedList<T> _stack;
-	Node<T>* _top;
-	bool     _isEmpty;
+	Node<T>*      _top;
+	bool          _isEmpty;
 
 public:
 	// getters and setters
@@ -48,6 +48,10 @@ T Stack<T>::pop() {
 	_stack.deleteFirst();
 	T item = _top->item;
 	_top = _stack.getFirst();
+
+	if (_top == NULL) {
+		_isEmpty = true;
+	}
 
 	return item;
 }
