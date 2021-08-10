@@ -20,7 +20,9 @@ private:
 
 public:
 	// getters and setters
-	int getLength() const { return _length; }
+	Node<T>* getFirst() const { return Head; }
+	Node<T>* getLast()  const { return Tail; }
+	int      getLength()const { return _length; }
 
 	// constructors
 	LinkedList();
