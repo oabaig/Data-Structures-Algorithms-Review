@@ -6,7 +6,6 @@ class Queue {
 private:
 	LinkedList<T> _queue;
 	Node<T>* _front;
-	Node<T>* _back;
 	bool     _isEmpty;
 
 public:
@@ -25,13 +24,14 @@ public:
 
 };
 
+// constructors
 template <typename T>
 Queue<T>::Queue() {
 	_front = NULL;
-	_back = NULL;
 	_isEmpty = true;
 }
 
+// methods
 template <typename T>
 void Queue<T>::enqueue(T item){
 	_queue.addLast(item);
