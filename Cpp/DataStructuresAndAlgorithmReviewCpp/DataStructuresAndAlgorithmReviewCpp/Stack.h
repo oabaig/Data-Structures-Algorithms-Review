@@ -26,7 +26,7 @@ public:
 // constructors
 template<typename T>
 Stack<T>::Stack() {
-	_top = new Node<T>;
+	_top = NULL;
 	_isEmpty = true;
 }
 
