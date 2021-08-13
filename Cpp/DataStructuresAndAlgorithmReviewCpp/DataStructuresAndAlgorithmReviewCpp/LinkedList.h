@@ -47,7 +47,6 @@ public:
 };
 
 // constructors
-
 template <typename T>
 LinkedList<T>::LinkedList() {
 	_length = 0;
@@ -57,7 +56,6 @@ LinkedList<T>::LinkedList() {
 }
 
 // destructors
-
 template <typename T>
 LinkedList<T>::~LinkedList() {
 	Node<T>* currNode = Head;
@@ -75,7 +73,6 @@ LinkedList<T>::~LinkedList() {
 }
 
 // methods
-
 template <typename T>
 void LinkedList<T>::addLast(T item) {
 	Node<T>* newNode = new Node<T>();
