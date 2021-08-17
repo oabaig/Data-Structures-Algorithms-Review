@@ -25,6 +25,7 @@ public:
 	bool peek();
 	bool isEmpty();
 	bool isFull();
+	void print();
 };
 
 // constructors
@@ -45,6 +46,28 @@ ArrayQueue<T>::~ArrayQueue() {
 }
 
 // methods
+template <typename T>
+void ArrayQueue<T>::print() {
+	for (int i = _front; i < _back; i++) {
+		if (i % 10 == 0 && i != _front) {
+			std::cout << std::endl << " " << _queue[i] << ", ";
+			continue;
+		}
+
+		if (i == _front) {
+			std::cout << "[" << _queue[i] << ", ";
+			continue;
+		}
+
+		if (i == _back - 1) {
+			std::cout << _queue[i] << "]" << std::endl;
+			continue;
+		}
+
+		std::cout << _queue[i] << ", ";
+	}
+}
+
 template <typename T>
 bool ArrayQueue<T>::enqueue(T item) {
 	if (!_isFull) {
