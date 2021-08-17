@@ -16,10 +16,10 @@ public:
 	Queue();
 
 	// methods
+	void print();
 	void enqueue(T item);
 	T    dequeue();
 	T    peek();
-	void print();
 
 
 };
