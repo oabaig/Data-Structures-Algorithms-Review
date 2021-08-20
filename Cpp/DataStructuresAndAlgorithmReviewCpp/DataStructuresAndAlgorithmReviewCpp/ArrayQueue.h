@@ -15,6 +15,8 @@ private:
 public:
 	// getters and setters
 	int getLength() const { return _count; }
+	bool isEmpty() const { return _isEmpty; }
+	bool isFull() const { return _isFull; }
 	
 	// constructors
 	ArrayQueue(int size);
@@ -25,9 +27,7 @@ public:
 	// methods
 	bool enqueue(T item);
 	T dequeue();
-	bool peek();
-	bool isEmpty();
-	bool isFull();
+	T peek();
 	void print();
 };
 
@@ -102,4 +102,11 @@ T ArrayQueue<T>::dequeue() {
 	}
 
 	return NULL;
+}
+
+template <typename T>
+T ArrayQueue<T>::peek() {
+	if (!_isEmpty) {
+		return _queue[front];
+	}
 }
