@@ -107,6 +107,6 @@ T ArrayQueue<T>::dequeue() {
 template <typename T>
 T ArrayQueue<T>::peek() {
 	if (!_isEmpty) {
-		return _queue[front];
+		return _queue[_front];
 	}
 }
