@@ -39,49 +39,41 @@ PriorityQueue::PriorityQueue(int size) {
 }
 
 bool PriorityQueue::enqueue(int item) {
-	if (!_isFull) {
+	if (_isFull) {
+		return false;
+	}
+	_isEmpty = false;
 
-		int index = _front;
-		bool foundLoc = false;
-		for (int i = 0; i < _size; i++) {
-			if (item < _queue[index]) {
-				int tempArraySize = _size - (index);
-
-				int* tempArray = new int[tempArraySize];
-				int tempIndex = index;
-				for (int k = 0; k < tempArraySize; k++) {
-					tempArray[k] = _queue[tempIndex];
-
-					tempIndex = (tempIndex + 1) % _maxSize;
-				}
-
-				_queue[index] = item;
-
-				int newIndex = (index + 1) % _maxSize;
-				for (int j = 0; j < tempArraySize; j++) {
-					_queue[newIndex] = tempArray[j];
-
-					newIndex = (newIndex + 1) % _maxSize;
-				}
-
-				_back = (_back + 1) % _maxSize;
-				foundLoc = true;
-				break;
-			}
-			index = (index + 1) % _maxSize;
+	int i;
+	for (i = _size - 1; i >= 0; i--) {
+		if (_queue[i] > item) {
+			_queue[i + 1] = _queue[i];
 		}
-
-		if (!foundLoc) {
-			_queue[_back] = item;
-			_back = (_back + 1) % _maxSize;
-		}
-
-		_size++;
-		if (_size == _maxSize) {
-			_isFull = true;
+		else {
+			break;
 		}
 	}
-	return false;
+
+	_queue[i + 1] = item;
+
+	_size++;
+	if (_size == _maxSize) {
+		_isFull = true;
+	}
+}
+
+int PriorityQueue::dequeue() {
+	if (_isEmpty) {
+		return NULL;
+	}
+	_isFull = false;
+	_size--;
+
+	if (_size == 0) {
+		_isEmpty = true;
+	}
+
+	return _queue[_size];
 }
 
 void PriorityQueue::print() {
