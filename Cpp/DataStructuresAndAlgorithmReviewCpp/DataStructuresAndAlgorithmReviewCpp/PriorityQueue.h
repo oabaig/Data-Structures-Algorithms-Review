@@ -9,9 +9,6 @@ private:
 	bool _isEmpty;
 	bool _isFull;
 
-	int _front;
-	int _back;
-
 public:
 	// getters and setters
 	bool isEmpty() const { return _isEmpty; }
@@ -31,9 +28,6 @@ PriorityQueue::PriorityQueue(int size) {
 	_maxSize = size;
 	_isEmpty = true;
 	_isFull = false;
-
-	_front = 0;
-	_back = 0;
 	
 	_queue = new int[size];
 }
@@ -44,6 +38,7 @@ bool PriorityQueue::enqueue(int item) {
 	}
 	_isEmpty = false;
 
+	// shift items
 	int i;
 	for (i = _size - 1; i >= 0; i--) {
 		if (_queue[i] > item) {
@@ -77,10 +72,8 @@ int PriorityQueue::dequeue() {
 }
 
 void PriorityQueue::print() {
-	int index = _front;
 	for (int i = 0; i < _size; i++) {
-		std::cout << _queue[index] << " ";
-		index = (index + 1) % _maxSize;
+		std::cout << _queue[i] << " ";
 	}
 	std::cout << std::endl;
 }
