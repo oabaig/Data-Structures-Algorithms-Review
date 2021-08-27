@@ -1,4 +1,3 @@
-
 def find_first_non_repeated_character(text):
     letter_dict = dict()
 
