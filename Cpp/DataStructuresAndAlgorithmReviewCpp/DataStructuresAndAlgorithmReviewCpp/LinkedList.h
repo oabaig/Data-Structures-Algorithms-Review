@@ -23,6 +23,7 @@ public:
 	Node<T>* getFirst() const { return Head; }
 	Node<T>* getLast()  const { return Tail; }
 	int      getLength()const { return _length; }
+	int      isEmpty()  const { return _length == 0 ? true : false; }
 
 	// constructors
 	LinkedList();
@@ -33,6 +34,7 @@ public:
 	// methods
 	void addLast(T item);
 	void addFirst(T item);
+	void addAtIndex(int k, T item);
 	void deleteLast();
 	void deleteFirst();
 	void print();
@@ -43,6 +45,7 @@ public:
 	int  indexOf(T item);
 	T*   toArray();
 	T    GetKthFromTheEnd(int k);
+	T    GetKthIndex(int k);
 
 };
 
@@ -301,4 +304,30 @@ bool LinkedList<T>::hasLoop() {
 	}
 
 	return false;
+}
+
+template <typename T>
+T LinkedList<T>::GetKthIndex(int k) {
+	Node<T>* currNode = Head;
+
+	for (int i = 0; i < k; i++) {
+		currNode = currNode->next;
+	}
+
+	return currNode->item;
+}
+
+template <typename T>
+void LinkedList<T>::addAtIndex(int k, T item) {
+	Node<T>* currNode = Head;
+
+	for (int i = 0; i < k; i++) {
+		currNode = currNode->next;
+	}
+
+	Node<T>* newNode = new Node<T>;
+	newNode->item = item;
+	newNode->next = currNode->next == NULL ? NULL : currNode->next;
+
+	currNode->next = newNode;
 }

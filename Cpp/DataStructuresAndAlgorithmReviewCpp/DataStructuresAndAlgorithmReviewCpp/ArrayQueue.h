@@ -14,9 +14,9 @@ private:
 
 public:
 	// getters and setters
-	int getLength() const { return _count; }
-	bool isEmpty() const { return _isEmpty; }
-	bool isFull() const { return _isFull; }
+	bool isEmpty()  const { return _isEmpty; }
+	bool isFull()   const { return _isFull; }
+	int  getLength()const { return _count; }
 	
 	// constructors
 	ArrayQueue(int size);
