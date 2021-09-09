@@ -327,7 +327,11 @@ void LinkedList<T>::addAtIndex(int k, T item) {
 
 	Node<T>* newNode = new Node<T>;
 	newNode->item = item;
-	newNode->next = currNode->next == NULL ? NULL : currNode->next;
+	if (currNode == NULL) {
+		// fix
+	}
+
+	newNode->next = (currNode->next == NULL ? NULL : currNode->next);
 
 	currNode->next = newNode;
 }
