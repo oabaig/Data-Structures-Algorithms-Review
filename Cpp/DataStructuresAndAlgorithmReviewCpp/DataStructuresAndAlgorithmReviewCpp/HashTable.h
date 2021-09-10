@@ -1,6 +1,5 @@
 #pragma once
 #include "LinkedList.h"
-#include <list>
 
 class HashTable {
 private:

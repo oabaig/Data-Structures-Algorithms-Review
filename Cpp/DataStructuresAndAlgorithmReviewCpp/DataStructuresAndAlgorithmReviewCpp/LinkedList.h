@@ -11,8 +11,6 @@ public:
 template <typename T>
 class LinkedList {
 private:
-	
-
 	Node<T>* Head;
 	Node<T>* Tail;
 
@@ -320,18 +318,19 @@ T LinkedList<T>::GetKthIndex(int k) {
 template <typename T>
 void LinkedList<T>::addAtIndex(int k, T item) {
 	Node<T>* currNode = Head;
-
+	Node<T>* prevNode = currNode;;
 	for (int i = 0; i < k; i++) {
+		prevNode = currNode;
 		currNode = currNode->next;
 	}
 
 	Node<T>* newNode = new Node<T>;
 	newNode->item = item;
 	if (currNode == NULL) {
-		// fix
+		addLast(item);
 	}
-
-	newNode->next = (currNode->next == NULL ? NULL : currNode->next);
-
-	currNode->next = newNode;
+	else {
+		prevNode->next = newNode;
+		newNode->next = currNode;
+	}
 }
