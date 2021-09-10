@@ -10,6 +10,13 @@ public:
 };
 
 template <typename T>
+struct IndexNode {
+public:
+	T   item;
+	int index = 0;
+};
+
+template <typename T>
 class LinkedList {
 private:
 	Node<T>* Head;
@@ -45,9 +52,9 @@ public:
 	bool hasLoop();
 	int  indexOf(T item);
 	T*   toArray();
-	T    GetKthFromTheEnd(int k);
-	T    GetNext();
-	void AddAtIndex(int k);
+	T    getKthFromTheEnd(int k);
+	T    getNext();
+	void addAtIndex(int k);
 
 };
 
@@ -232,7 +239,7 @@ void LinkedList<T>::reverse() {
 }
 
 template<typename T>
-T LinkedList<T>::GetKthFromTheEnd(int k) {
+T LinkedList<T>::getKthFromTheEnd(int k) {
 	Node<T>* leadingNode = Head;
 	Node<T>* trailingNode = Head;
 
@@ -311,7 +318,7 @@ bool LinkedList<T>::hasLoop() {
 }
 
 template <typename T>
-T LinkedList<T>::GetNext() {
+T LinkedList<T>::getNext() {
 	if (Ptr == NULL) {
 		Ptr = Head;
 
@@ -327,4 +334,28 @@ T LinkedList<T>::GetNext() {
 		Ptr = Ptr->next;
 		return Ptr->item;
 	}
+}
+
+template <typename T>
+void LinkedList<T>::addAtIndex(int k, T item) {
+	Node<T>* currNode = Head;
+	Node<T>* prevNode = currNode;;
+	for (int i = 0; i < k; i++) {
+		prevNode = currNode;
+		currNode = currNode->next;
+	}
+
+	Node<T>* newNode = new Node<T>;
+	newNode->item = item;
+	if (currNode == NULL) {
+		addLast(item);
+	}
+	else {
+		prevNode->next = newNode;
+		newNode->next = currNode;
+	}
+
+	newNode->next = (currNode->next == NULL ? NULL : currNode->next);
+
+	currNode->next = newNode;
 }

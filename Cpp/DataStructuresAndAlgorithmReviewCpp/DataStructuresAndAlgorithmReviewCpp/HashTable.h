@@ -37,19 +37,25 @@ void HashTable::put(int k, std::string v) {
 	Entry newEntry;
 	newEntry.key = k;
 	newEntry.value = v;
-
+	/*
 	int i = 0;
 	if (!_table[index].isEmpty()) {
 		for (i; i < _table[index].getLength(); i++) {
-			Entry retrievedEntry = _table[index].GetKthIndex(i);
+			//Entry retrievedEntry = _table[index].GetKthIndex(i);
 
 			if (retrievedEntry.key == k) {
 				break;
 			}
 		}
+
+
 	}
 
-	_table[index].addAtIndex(i, newEntry);
+	_table[index].addAtIndex(i, newEntry);*/
+
+	while (_table[index].getNext().key != k) {
+
+	}
 }
 
 std::string HashTable::get(int k) {
@@ -59,5 +65,5 @@ std::string HashTable::get(int k) {
 
 	LinkedList<Entry> getList = _table[index];
 
-	return getList.GetKthIndex(k).value;
+	//return getList.GetKthIndex(k).value;
 }
