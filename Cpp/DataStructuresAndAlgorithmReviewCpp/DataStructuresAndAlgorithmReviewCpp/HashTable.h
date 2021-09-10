@@ -4,7 +4,7 @@
 class HashTable {
 private:
 	struct Entry {
-		int key;
+		int key = 0;
 		std::string value;
 	};
 

@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
+#include <list>
 
 template <typename T>
 struct Node {
 public:
 	T     item;
-	Node* next;
+	Node* next = NULL;
 };
 
 template <typename T>
@@ -13,6 +14,8 @@ class LinkedList {
 private:
 	Node<T>* Head;
 	Node<T>* Tail;
+
+	Node<T>* Ptr;
 
 	int _length;
 
@@ -43,7 +46,8 @@ public:
 	int  indexOf(T item);
 	T*   toArray();
 	T    GetKthFromTheEnd(int k);
-	T    GetKthIndex(int k);
+	T    GetNext();
+	void AddAtIndex(int k);
 
 };
 
@@ -54,6 +58,8 @@ LinkedList<T>::LinkedList() {
 
 	Head = NULL;
 	Tail = NULL;
+
+	Ptr = Head;
 }
 
 // destructors
@@ -305,32 +311,20 @@ bool LinkedList<T>::hasLoop() {
 }
 
 template <typename T>
-T LinkedList<T>::GetKthIndex(int k) {
-	Node<T>* currNode = Head;
+T LinkedList<T>::GetNext() {
+	if (Ptr == NULL) {
+		Ptr = Head;
 
-	for (int i = 0; i < k; i++) {
-		currNode = currNode->next;
+		if (Ptr != NULL) {
+			return Ptr->item;
+		}
+		else {
+			return NULL;
+		}
 	}
 
-	return currNode->item;
-}
-
-template <typename T>
-void LinkedList<T>::addAtIndex(int k, T item) {
-	Node<T>* currNode = Head;
-	Node<T>* prevNode = currNode;;
-	for (int i = 0; i < k; i++) {
-		prevNode = currNode;
-		currNode = currNode->next;
-	}
-
-	Node<T>* newNode = new Node<T>;
-	newNode->item = item;
-	if (currNode == NULL) {
-		addLast(item);
-	}
-	else {
-		prevNode->next = newNode;
-		newNode->next = currNode;
+	if (Ptr->next != NULL) {
+		Ptr = Ptr->next;
+		return Ptr->item;
 	}
 }
