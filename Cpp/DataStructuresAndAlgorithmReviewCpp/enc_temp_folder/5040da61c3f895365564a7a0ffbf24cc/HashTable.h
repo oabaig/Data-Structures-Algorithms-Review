@@ -60,4 +60,6 @@ std::string HashTable::get(int k) {
 			return i->value;
 		}
 	}
+
+	return NULL;
 }
