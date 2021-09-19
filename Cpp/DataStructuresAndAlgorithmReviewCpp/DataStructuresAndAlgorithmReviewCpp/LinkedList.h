@@ -48,13 +48,13 @@ public:
 	void print();
 	void printMiddle();
 	void reverse();
+	void addAtIndex(int k, T item);
 	bool contains(T item);
 	bool hasLoop();
 	int  indexOf(T item);
 	T*   toArray();
 	T    getKthFromTheEnd(int k);
 	T    getNext();
-	void addAtIndex(int k);
 
 };
 
