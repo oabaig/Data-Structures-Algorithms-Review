@@ -127,6 +127,5 @@ int Tree::height(Node* root) {
 }
 
 int Tree::minValue(Node* root) {
-
 	return std::min(minValue(root->leftChild), minValue(root->rightChild));
 }
